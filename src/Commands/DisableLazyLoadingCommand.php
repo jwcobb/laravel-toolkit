@@ -11,7 +11,6 @@ class DisableLazyLoadingCommand extends Command
 
     public $description = 'Disable lazy-loading in non-Production environments.';
 
-
     public function handle(): int
     {
         if ($this->confirm('Disable lazy-loading in non-Production environments?')) {
