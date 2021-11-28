@@ -11,7 +11,6 @@ class LaravelToolkitCommand extends Command
 
     public $description = 'Run commands';
 
-
     public function handle(): int
     {
         Artisan::call('laravel-toolkit:disable-lazy-loading');
