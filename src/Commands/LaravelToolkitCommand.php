@@ -75,7 +75,6 @@ class LaravelToolkitCommand extends Command
             dump($composerFile);
 
             if (! in_array('@php artisan ide-helper:generate', $composerFile['scripts']['post-autoload-dump'], true)) {
-
             }
         }
 

@@ -15,7 +15,7 @@ class LaravelToolkitCommand extends Command
     ];
     private array $requireDev = [
         'require',
-        '--dev'
+        '--dev',
     ];
     private bool $publishLivewireAssets = false;
     private const PUBLISH_LIVEWIRE_ASSETS_SCRIPT = '@php artisan vendor:publish --force --tag=livewire:assets --ansi';
@@ -28,7 +28,6 @@ class LaravelToolkitCommand extends Command
     public $signature = 'laravel-toolkit:require-packages';
 
     public $description = 'Use Composer to interactively install commonly used packages ';
-
 
     public function handle(): int
     {
@@ -98,26 +97,31 @@ class LaravelToolkitCommand extends Command
 
 
             if (in_array('barryvdh/laravel-ide-helper', $this->requireDev, true)
-                && ! in_array('@php artisan ide-helper:generate',
-                    $composerFile->scripts->{'post-autoload-dump'}, true)) {
-
+                && ! in_array(
+                    '@php artisan ide-helper:generate',
+                    $composerFile->scripts->{'post-autoload-dump'},
+                    true
+                )) {
                 $this->info('Adding ide-helper scripts to post-autoload-dump');
 
                 array_splice($composerFile->scripts->{'post-autoload-dump'}, 1, 0, self::IDE_HELPER_SCRIPTS);
             }
 
 
-            if ($this->publishLivewireAssets && ! in_array(self::PUBLISH_LIVEWIRE_ASSETS_SCRIPT,
-                    $composerFile->scripts->{'post-autoload-dump'}, true)) {
-
+            if ($this->publishLivewireAssets && ! in_array(
+                self::PUBLISH_LIVEWIRE_ASSETS_SCRIPT,
+                $composerFile->scripts->{'post-autoload-dump'},
+                true
+            )) {
                 $this->info('Adding script to publish Livewire assets to post-autoload-dump');
 
                 $composerFile->scripts->{'post-autoload-dump'}[] = self::PUBLISH_LIVEWIRE_ASSETS_SCRIPT;
             }
-            File::put(base_path('composer.json'),
-                json_encode($composerFile, JSON_THROW_ON_ERROR + JSON_PRETTY_PRINT));
+            File::put(
+                base_path('composer.json'),
+                json_encode($composerFile, JSON_THROW_ON_ERROR + JSON_PRETTY_PRINT)
+            );
             $this->info('Updated composer.json written.');
-
         }
 
         $this->comment('All done');
