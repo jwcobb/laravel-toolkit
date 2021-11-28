@@ -60,10 +60,10 @@ if (! function_exists('getTbaFormat')) {
     {
         if ($datetime->format('His') === '000000') {
             return $datetime->format(preg_replace(
-                    '/(?:[aABgGhHisuveIOPTZcr]| \\\a\\\t )+[ :]?[aABgGhHisuveIOPTZcr]*/',
-                    '',
-                    $format
-                )).' TBA';
+                '/(?:[aABgGhHisuveIOPTZcr]| \\\a\\\t )+[ :]?[aABgGhHisuveIOPTZcr]*/',
+                '',
+                $format
+            )).' TBA';
         }
 
         return $datetime->format($format);

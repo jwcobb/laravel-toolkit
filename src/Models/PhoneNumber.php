@@ -12,7 +12,9 @@ use JWCobb\LaravelToolkit\Models\Presenters\PhoneNumberPresenter;
  */
 class PhoneNumber extends Model
 {
-    use HasFactory, SoftDeletes, HasPrimary;
+    use HasFactory;
+    use SoftDeletes;
+    use HasPrimary;
 
     protected $table = 'phone_numbers';
     protected $presenter = PhoneNumberPresenter::class;
@@ -26,17 +28,15 @@ class PhoneNumber extends Model
     ];
 
     protected $casts = [
-        'label'        => 'string',
+        'label' => 'string',
         'country_code' => 'string',
-        'number'       => 'string',
-        'extension'    => 'string',
-        'is_primary'   => 'boolean',
+        'number' => 'string',
+        'extension' => 'string',
+        'is_primary' => 'boolean',
     ];
-
 
     public function phoneable(): \Illuminate\Database\Eloquent\Relations\MorphTo
     {
         return $this->morphTo(__FUNCTION__);
     }
-
 }

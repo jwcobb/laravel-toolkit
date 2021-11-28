@@ -13,7 +13,10 @@ use TheHiveTeam\Presentable\HasPresentable;
  */
 class StreetAddress extends Model
 {
-    use HasFactory, SoftDeletes, HasPresentable, HasPrimary;
+    use HasFactory;
+    use SoftDeletes;
+    use HasPresentable;
+    use HasPrimary;
 
     protected $table = 'addresses';
     protected $presenter = AddressPresenter::class;
@@ -35,25 +38,23 @@ class StreetAddress extends Model
     ];
 
     protected $casts = [
-        'label'          => 'string',
+        'label' => 'string',
         'address_line_1' => 'string',
         'address_line_2' => 'string',
         'address_line_3' => 'string',
-        'locality'       => 'string',
-        'region'         => 'string',
-        'postal_code'    => 'string',
-        'country_code'   => 'string',
-        'is_primary'     => 'boolean',
-        'is_po_box'      => 'boolean',
-        'latitude'       => 'float',
-        'longitude'      => 'float',
-        'timezone'       => 'string',
+        'locality' => 'string',
+        'region' => 'string',
+        'postal_code' => 'string',
+        'country_code' => 'string',
+        'is_primary' => 'boolean',
+        'is_po_box' => 'boolean',
+        'latitude' => 'float',
+        'longitude' => 'float',
+        'timezone' => 'string',
     ];
-
 
     public function addressable(): \Illuminate\Database\Eloquent\Relations\MorphTo
     {
         return $this->morphTo(__FUNCTION__);
     }
-
 }

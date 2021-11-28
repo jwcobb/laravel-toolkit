@@ -2,7 +2,6 @@
 
 namespace JWCobb\LaravelToolkit\Models;
 
-
 trait HasPrimary
 {
     public function scopePrimary($query)

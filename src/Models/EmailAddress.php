@@ -12,7 +12,9 @@ use JWCobb\LaravelToolkit\Models\Presenters\EmailAddressPresenter;
  */
 class EmailAddress extends Model
 {
-    use HasFactory, SoftDeletes, HasPrimary;
+    use HasFactory;
+    use SoftDeletes;
+    use HasPrimary;
 
     protected $table = 'email_addresses';
     protected $presenter = EmailAddressPresenter::class;
@@ -24,17 +26,15 @@ class EmailAddress extends Model
     ];
 
     protected $casts = [
-        'label'         => 'string',
+        'label' => 'string',
         'email_address' => 'string',
-        'is_primary'    => 'boolean',
+        'is_primary' => 'boolean',
     ];
-
 
     public function emailable(): \Illuminate\Database\Eloquent\Relations\MorphTo
     {
         return $this->morphTo(__FUNCTION__);
     }
-
 
     public function setEmailAddressAttribute($value): void
     {
