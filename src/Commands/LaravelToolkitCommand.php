@@ -124,7 +124,6 @@ class LaravelToolkitCommand extends Command
             $this->info('Running composer dump-autoload to run the newly added scripts.');
 
             app()->make(Composer::class)->run(['dump-autoload']);
-
         }
 
         $this->comment('All done');
