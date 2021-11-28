@@ -44,9 +44,9 @@
             "JWCobb\\LaravelToolkit\\Database\\Factories\\": "database/factories"
         },
         "files": [
-            "app/Helpers/Common.php",
-            "app/Helpers/Forms.php",
-            "app/Helpers/Tickets.php"
+            "src/Helpers/Common.php",
+            "src/Helpers/Forms.php",
+            "src/Helpers/Tickets.php"
         ]
     },
     "autoload-dev": {
