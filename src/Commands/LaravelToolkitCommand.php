@@ -108,10 +108,10 @@ class LaravelToolkitCommand extends Command
 
 
             if ($this->publishLivewireAssets && ! in_array(
-                    self::PUBLISH_LIVEWIRE_ASSETS_SCRIPT,
-                    $composerFile->scripts->{'post-autoload-dump'},
-                    true
-                )) {
+                self::PUBLISH_LIVEWIRE_ASSETS_SCRIPT,
+                $composerFile->scripts->{'post-autoload-dump'},
+                true
+            )) {
                 $this->info('Adding script to publish Livewire assets to post-autoload-dump');
 
                 $composerFile->scripts->{'post-autoload-dump'}[] = self::PUBLISH_LIVEWIRE_ASSETS_SCRIPT;
