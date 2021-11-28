@@ -3,8 +3,8 @@
 namespace JWCobb\LaravelToolkit\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use JWCobb\LaravelToolkit\LaravelToolkitServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

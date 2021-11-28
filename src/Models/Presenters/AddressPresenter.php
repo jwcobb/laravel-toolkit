@@ -37,7 +37,6 @@ class AddressPresenter extends Presenter
         return $string;
     }
 
-
     /**
      * Formats a street address
      */
