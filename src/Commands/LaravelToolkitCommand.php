@@ -13,8 +13,8 @@ class LaravelToolkitCommand extends Command
 
     public function handle(): int
     {
-        Artisan::call('laravel-toolkit:disable-lazy-loading');
-        Artisan::call('laravel-toolkit:require-packages');
+        $this->call('laravel-toolkit:disable-lazy-loading');
+        $this->call('laravel-toolkit:require-packages');
 
         return self::SUCCESS;
     }
