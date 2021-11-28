@@ -2,7 +2,9 @@
 
 namespace JWCobb\LaravelToolkit;
 
+use JWCobb\LaravelToolkit\Commands\DisableLazyLoadingCommand;
 use JWCobb\LaravelToolkit\Commands\LaravelToolkitCommand;
+use JWCobb\LaravelToolkit\Commands\RequirePackagesCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
