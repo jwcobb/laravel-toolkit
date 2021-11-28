@@ -121,6 +121,10 @@ class LaravelToolkitCommand extends Command
                 json_encode($composerFile, JSON_THROW_ON_ERROR + JSON_PRETTY_PRINT)
             );
             $this->info('Updated composer.json written.');
+            $this->info('Running composer dump-autoload to run the newly added scripts.');
+
+            app()->make(Composer::class)->run(['dump-autoload']);
+
         }
 
         $this->comment('All done');
