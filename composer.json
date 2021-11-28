@@ -1,26 +1,32 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "jwcobb/laravel-toolkit",
+    "description": "A collection of things I use in nearly every Laravel app.",
     "keywords": [
-        ":vendor_name",
+        "jwcobb",
         "laravel",
-        ":package_slug"
+        "laravel-toolkit"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/jwcobb/laravel-toolkit",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "J Cobb",
+            "email": "oss@jcobb.org",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.0",
-        "spatie/laravel-package-tools": "^1.9.2",
-        "illuminate/contracts": "^8.73"
+        "archtechx/laravel-seo": "^0.3.1",
+        "blade-ui-kit/blade-icons": "^1.1",
+        "blade-ui-kit/blade-zondicons": "^1.1",
+        "datacreativa/laravel-presentable": "^0.0.1",
+        "illuminate/contracts": "^8.73",
+        "spatie/laravel-package-tools": "^1.9.2"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.6",
+        "barryvdh/laravel-ide-helper": "^2.10",
         "nunomaduro/collision": "^5.10",
         "nunomaduro/larastan": "^1.0",
         "orchestra/testbench": "^6.22",
@@ -34,13 +40,18 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
-        }
+            "JWCobb\\LaravelToolkit\\": "src",
+            "JWCobb\\LaravelToolkit\\Database\\Factories\\": "database/factories"
+        },
+        "files": [
+            "app/Helpers/Common.php",
+            "app/Helpers/Forms.php",
+            "app/Helpers/Tickets.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "JWCobb\\LaravelToolkit\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -54,10 +65,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "JWCobb\\LaravelToolkit\\LaravelToolkitServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelToolkit": "JWCobb\\LaravelToolkit\\Facades\\LaravelToolkit"
             }
         }
     },
