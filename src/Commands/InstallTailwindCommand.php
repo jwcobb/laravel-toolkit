@@ -12,7 +12,6 @@ class InstallTailwindCommand extends Command
 
     public $description = 'Install TailwindCSS.';
 
-
     public function handle(): int
     {
         if ($this->confirm('Install TailwindCSS?')) {
@@ -25,7 +24,6 @@ class InstallTailwindCommand extends Command
             if ($this->confirm('Extend the default Tailwind theme colors with primary and secondary colors?')) {
                 $this->extendThemeColors();
             } else {
-
             }
 
             $this->comment('All done');
@@ -34,7 +32,6 @@ class InstallTailwindCommand extends Command
         return self::SUCCESS;
     }
 
-
     private function installTailwind(): void
     {
         $process = new Process(['npm', 'install', '-D', 'tailwindcss', 'postcss', 'autoprefixer']);
@@ -42,14 +39,12 @@ class InstallTailwindCommand extends Command
         $this->info('Tailwind has been installed.');
     }
 
-
     private function initializeTailwind(): void
     {
         $process = new Process(['npx', 'tailwindcss', 'init']);
         $process->run();
         $this->info('Tailwind has been initialized.');
     }
-
 
     private function addPostCSSPlugin(): void
     {
@@ -67,7 +62,6 @@ class InstallTailwindCommand extends Command
         $this->info("Tailwind has been added as a PostCSS plugin in {$path}.");
     }
 
-
     private function configureTemplatePaths(): void
     {
         $path = 'tailwind.config.js';
@@ -84,7 +78,6 @@ class InstallTailwindCommand extends Command
         $this->info("Tailwind template paths have been configured in {$path}.");
     }
 
-
     private function addTailwindDirectives(): void
     {
         $path = 'resources/css/app.css';
@@ -99,7 +92,6 @@ class InstallTailwindCommand extends Command
         }
         $this->info("Tailwind directives have been added to {$path}.");
     }
-
 
     private function extendThemeColors(): void
     {
@@ -152,6 +144,4 @@ END;
         }
         $this->info("Tailwind theme colors have been extended in {$path}.");
     }
-
-
 }
