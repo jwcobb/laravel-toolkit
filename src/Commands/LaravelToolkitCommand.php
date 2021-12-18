@@ -14,6 +14,7 @@ class LaravelToolkitCommand extends Command
     {
         $this->call('laravel-toolkit:disable-lazy-loading');
         $this->call('laravel-toolkit:require-packages');
+        $this->call('laravel-toolkit:install-tailwind');
 
         return self::SUCCESS;
     }
