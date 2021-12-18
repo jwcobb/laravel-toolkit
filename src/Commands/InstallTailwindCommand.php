@@ -136,11 +136,11 @@ class InstallTailwindCommand extends Command
                     '900': '#000000'
                 },
             },
-        },
+        }
 END;
 
         $path = 'tailwind.config.js';
-        if (! Str::contains(
+        if (Str::contains(
             $file = file_get_contents(base_path($path)),
             'extend: {}'
         )) {

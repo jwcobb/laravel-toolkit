@@ -3,6 +3,7 @@
 namespace JWCobb\LaravelToolkit;
 
 use JWCobb\LaravelToolkit\Commands\DisableLazyLoadingCommand;
+use JWCobb\LaravelToolkit\Commands\InstallTailwindCommand;
 use JWCobb\LaravelToolkit\Commands\LaravelToolkitCommand;
 use JWCobb\LaravelToolkit\Commands\RequirePackagesCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -27,6 +28,7 @@ class LaravelToolkitServiceProvider extends PackageServiceProvider
             ->hasCommand(LaravelToolkitCommand::class)
             ->hasCommand(DisableLazyLoadingCommand::class)
             ->hasCommand(RequirePackagesCommand::class)
+            ->hasCommand(InstallTailwindCommand::class)
         ;
     }
 }
