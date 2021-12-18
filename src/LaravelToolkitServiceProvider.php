@@ -23,7 +23,7 @@ class LaravelToolkitServiceProvider extends PackageServiceProvider
 //            ->hasViews()
             ->hasMigration('create_email_addresses_table')
             ->hasMigration('create_phone_numbers_table')
-            ->hasMigration('create_street_addresses_table')
+            ->hasMigration('create_addresses_table')
             ->hasCommand(LaravelToolkitCommand::class)
             ->hasCommand(DisableLazyLoadingCommand::class)
             ->hasCommand(RequirePackagesCommand::class)

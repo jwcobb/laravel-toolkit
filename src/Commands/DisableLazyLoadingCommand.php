@@ -20,7 +20,7 @@ class DisableLazyLoadingCommand extends Command
             )) {
                 file_put_contents(base_path('app/Providers/AppServiceProvider.php'), str_replace(
                     "public function boot()".PHP_EOL."    {",
-                    "public function boot()".PHP_EOL."    {".PHP_EOL."        Model::preventLazyLoading(! app()->isProduction());".PHP_EOL,
+                    "public function boot()".PHP_EOL."    {".PHP_EOL."        \Illuminate\Database\Eloquent\Model::preventLazyLoading(! app()->isProduction());".PHP_EOL,
                     $appSP
                 ));
             }

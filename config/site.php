@@ -49,7 +49,7 @@ return [
     ],
 
     'description' => [
-        'default' => 'J Cobb is a ticketing marketplace professional with ' . (date('Y') - 1994) . ' years of experience who also enjoys traveling, cooking, snorkeling, diving, and is an avid bourbon and tequila collector.',
+        'default' => 'This is my site',
     ],
 
 ];

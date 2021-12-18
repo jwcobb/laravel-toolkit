@@ -37,37 +37,25 @@ You can install the package via composer:
 composer require jwcobb/laravel-toolkit
 ```
 
+You can run some interactive scripts to set some things up and install common packages via Composer
+
+```bash
+php artisan laravel-toolkit:run-commands
+```
+
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-toolkit_without_prefix-migrations"
+php artisan vendor:publish --tag="toolkit-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --tag="laravel-toolkit_without_prefix-config"
+php artisan vendor:publish --tag="toolkit-config"
 ```
 
-Optionally, you can publish the views using
 
-```bash
-php artisan vendor:publish --tag="example-views"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-## Usage
-
-```php
-$laravel-toolkit = new JWCobb\LaravelToolkit();
-echo $laravel-toolkit->echoPhrase('Hello, JWCobb!');
-```
 
 ## Testing
 
