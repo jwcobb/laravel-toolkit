@@ -20,7 +20,7 @@ What's included:
 - Models
     - EmailAddress
     - PhoneNumber
-    - StreetAddress
+    - Address
     - HasPrimary (trait)
 - Presenters (uses [datacreativa/laravel-presentable](https://github.com/datacreativa/laravel-presentable))
     - EmailAddressPresenter

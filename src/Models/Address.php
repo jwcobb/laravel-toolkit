@@ -11,7 +11,7 @@ use TheHiveTeam\Presentable\HasPresentable;
 /**
  * @mixin IdeHelperAddress
  */
-class StreetAddress extends Model
+class Address extends Model
 {
     use HasFactory;
     use SoftDeletes;
