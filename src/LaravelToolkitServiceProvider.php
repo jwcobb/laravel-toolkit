@@ -34,5 +34,4 @@ class LaravelToolkitServiceProvider extends PackageServiceProvider
             ->hasCommand(InstallViewsCommand::class)
             ->hasCommand(PreventLazyLoadingCommand::class);
     }
-
 }
