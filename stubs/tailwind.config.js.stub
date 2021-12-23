@@ -1,0 +1,43 @@
+module.exports = {
+    content: [
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
+    ],
+    theme: {
+        extend: {
+            colors: {
+                'primary': {
+                    // https://www.tailwindshades.com/#color=111.54929577464789%2C91.41630901287556%2C54.313725490196084&step-up=8&step-down=11&hue-shift=0&name=harlequin&overrides=e30%3D
+                    DEFAULT: '#3EF520',
+                    '50': '#D6FDD0',
+                    '100': '#C5FCBC',
+                    '200': '#A3FA95',
+                    '300': '#82F96E',
+                    '400': '#60F747',
+                    '500': '#3EF520',
+                    '600': '#26D309',
+                    '700': '#1C9E07',
+                    '800': '#136805',
+                    '900': '#093202'
+                },
+                'secondary': {
+                    // Rich Black from https://coolors.co/3ef520-141115-4c2b36-8d6346-9d75cb
+                    // https://www.tailwindshades.com/#color=285%2C10.526315789473683%2C7.450980392156863&step-up=8&step-down=11&hue-shift=0&name=baltic-sea&overrides=e30%3D
+                    DEFAULT: '#141115',
+                    '50': '#75637A',
+                    '100': '#6A5A6F',
+                    '200': '#544859',
+                    '300': '#3F3642',
+                    '400': '#29232C',
+                    '500': '#141115',
+                    '600': '#000000',
+                    '700': '#000000',
+                    '800': '#000000',
+                    '900': '#000000'
+                },
+            },
+        },
+    },
+    plugins: [],
+}

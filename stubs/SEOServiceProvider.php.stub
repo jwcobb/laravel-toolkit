@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class SEOServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        //
+    }
+
+
+    public function boot(): void
+    {
+        if (config('site.default.page_title', false)) {
+            seo()->site(config('site.default.page_title'))
+                ->title(
+                    default: config('site.default.page_title'),
+                    modify: fn(string $title) => $title.' :: My Site'
+                );
+        }
+
+        if (config('site.default.description', false)) {
+            seo()->description(default: config('site.default.description'));
+        }
+
+        if (config('site.default.image', false)) {
+            seo()->image(default: config('site.default.image'));
+        }
+
+        if (config('site.social.twitter.username', false)) {
+            seo()->twitterSite(default: config('site.default.twitter_image'));
+        }
+    }
+}

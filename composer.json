@@ -17,15 +17,10 @@
     ],
     "require": {
         "php": "^8.0",
-        "archtechx/laravel-seo": "^0.3.1",
-        "blade-ui-kit/blade-icons": "^1.1",
-        "blade-ui-kit/blade-zondicons": "^1.1",
-        "datacreativa/laravel-presentable": "^0.0.1",
         "illuminate/contracts": "^8.73",
         "spatie/laravel-package-tools": "^1.9.2"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.10",
         "nunomaduro/collision": "^5.10",
         "nunomaduro/larastan": "^1.0",
@@ -60,7 +55,12 @@
         "test-coverage": "vendor/bin/pest coverage"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "composer/package-versions-deprecated": true,
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {
