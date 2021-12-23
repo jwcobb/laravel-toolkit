@@ -37,7 +37,6 @@ class PreventLazyLoadingCommand extends Command
         return self::SUCCESS;
     }
 
-
     private function activateServiceProvider()
     {
         $path = 'config/app.php';

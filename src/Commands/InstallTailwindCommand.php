@@ -3,7 +3,6 @@
 namespace JWCobb\LaravelToolkit\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 use Symfony\Component\Process\Process;
 
 class InstallTailwindCommand extends Command
@@ -28,7 +27,6 @@ class InstallTailwindCommand extends Command
         return self::SUCCESS;
     }
 
-
     private function installTailwind(): void
     {
         $process = new Process(['npm', 'install', '-D', 'tailwindcss', 'postcss', 'autoprefixer']);
@@ -36,14 +34,12 @@ class InstallTailwindCommand extends Command
         $this->info('Tailwind has been installed.');
     }
 
-
     private function initializeTailwind(): void
     {
         $process = new Process(['npx', 'tailwindcss', 'init']);
         $process->run();
         $this->info('Tailwind has been initialized.');
     }
-
 
     private function replaceWebpackMixJs(): void
     {
@@ -63,10 +59,8 @@ class InstallTailwindCommand extends Command
         } else {
             $this->info("Don’t forget to manually add Tailwind as a PostCSS plugin in {$path}.");
             $this->comment("Docs: https://tailwindcss.com/docs/guides/laravel");
-
         }
     }
-
 
     private function replaceTailwindConfigJs(): void
     {
@@ -88,7 +82,6 @@ class InstallTailwindCommand extends Command
             $this->comment("Docs: https://tailwindcss.com/docs/guides/laravel");
         }
     }
-
 
     private function replaceAppCss(): void
     {

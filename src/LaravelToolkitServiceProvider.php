@@ -35,9 +35,7 @@ class LaravelToolkitServiceProvider extends PackageServiceProvider
             ->hasCommand(PreventLazyLoadingCommand::class);
     }
 
-
     public function boot()
     {
-
     }
 }
