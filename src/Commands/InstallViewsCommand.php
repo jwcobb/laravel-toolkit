@@ -20,10 +20,10 @@ class InstallViewsCommand extends Command
 
             foreach ($files as $destination => $stub) {
                 if (file_exists(base_path($destination))) {
-                    $this->warn("SKIPPED: A file already exists at {$path}.");
+                    $this->warn("SKIPPED: A file already exists at {$destination}.");
                 } else {
                     copy(base_path($stub), base_path($destination));
-                    $this->info("INSTALLED: {$path}.");
+                    $this->info("INSTALLED: {$destination}.");
                 }
             }
         }
