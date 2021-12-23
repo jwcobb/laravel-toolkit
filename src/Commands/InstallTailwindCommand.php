@@ -43,9 +43,9 @@ class InstallTailwindCommand extends Command
 
     private function replaceWebpackMixJs(): void
     {
-        $originalPath = 'https://raw.githubusercontent.com/laravel/laravel/8.x/webpack.mix.js';
-        $stubPath = 'vendor/jwcobb/laravel-toolkit/stubs/webpack.mix.js.stub';
-        $path = 'webpack.mix.js';
+        $originalPath = 'https://raw.githubusercontent.com/laravel/laravel/8.x/tailwind.config.js';
+        $stubPath = 'vendor/jwcobb/laravel-toolkit/stubs/tailwind.config.js.stub';
+        $path = 'tailwind.config.js';
 
         if (file_get_contents(base_path($path)) === file_get_contents($originalPath)) {
             $replaceFile = true;
