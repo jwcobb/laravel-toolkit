@@ -18,19 +18,16 @@ class InstallTailwindCommand extends Command
             // https://tailwindcss.com/docs/guides/laravel
             $this->installTailwind();
             $this->initializeTailwind();
-            $this->addPostCSSPlugin();
-            $this->configureTemplatePaths();
-            $this->addTailwindDirectives();
-            if ($this->confirm('Extend the default Tailwind theme colors with primary and secondary colors?')) {
-                $this->extendThemeColors();
-            } else {
-            }
+            $this->replaceWebpackMixJs();
+            $this->replaceTailwindConfigJs();
+            $this->replaceAppCss();
 
             $this->comment('All done');
         }
 
         return self::SUCCESS;
     }
+
 
     private function installTailwind(): void
     {
@@ -39,6 +36,7 @@ class InstallTailwindCommand extends Command
         $this->info('Tailwind has been installed.');
     }
 
+
     private function initializeTailwind(): void
     {
         $process = new Process(['npx', 'tailwindcss', 'init']);
@@ -46,102 +44,70 @@ class InstallTailwindCommand extends Command
         $this->info('Tailwind has been initialized.');
     }
 
-    private function addPostCSSPlugin(): void
+
+    private function replaceWebpackMixJs(): void
     {
+        $originalPath = 'https://raw.githubusercontent.com/laravel/laravel/8.x/webpack.mix.js';
+        $stubPath = 'vendor/jwcobb/laravel-toolkit/stubs/webpack.mix.js.stub';
         $path = 'webpack.mix.js';
-        if (! Str::contains(
-            $file = file_get_contents(base_path($path)),
-            'tailwindcss'
-        )) {
-            file_put_contents(base_path($path), str_replace(
-                ".postCss('resources/css/app.css', 'public/css', [".PHP_EOL."        //".PHP_EOL."    ])",
-                ".postCss('resources/css/app.css', 'public/css', [".PHP_EOL."        require(\"tailwindcss\"),".PHP_EOL."    ])",
-                $file
-            ));
+
+        if (file_get_contents(base_path($path)) === file_get_contents($originalPath)) {
+            $replaceFile = true;
+        } else {
+            $replaceFile = $this->confirm("{$path} has been altered from the original. Are you sure you want to overwrite it?", false);
         }
-        $this->info("Tailwind has been added as a PostCSS plugin in {$path}.");
+
+        if ($replaceFile) {
+            copy(base_path($stubPath), (base_path($path)));
+            $this->info("Your default file has been placed at {$path}.");
+        } else {
+            $this->info("Don’t forget to manually add Tailwind as a PostCSS plugin in {$path}.");
+            $this->comment("Docs: https://tailwindcss.com/docs/guides/laravel");
+
+        }
     }
 
-    private function configureTemplatePaths(): void
+
+    private function replaceTailwindConfigJs(): void
     {
+        $originalPath = 'https://raw.githubusercontent.com/tailwindlabs/tailwindcss/master/stubs/simpleConfig.stub.js';
+        $stubPath = 'vendor/jwcobb/laravel-toolkit/stubs/tailwind.config.js.stub';
         $path = 'tailwind.config.js';
-        if (Str::contains(
-            $file = file_get_contents(base_path($path)),
-            'content: [],'
-        )) {
-            file_put_contents(base_path($path), str_replace(
-                'content: [],',
-                'content: ["./resources/**/*.blade.php", "./resources/**/*.js", "./resources/**/*.vue",],',
-                $file
-            ));
+
+        if (file_get_contents(base_path($path)) === file_get_contents($originalPath)) {
+            $replaceFile = true;
+        } else {
+            $replaceFile = $this->confirm("{$path} has been altered from the original. Are you sure you want to overwrite it?", false);
         }
-        $this->info("Tailwind template paths have been configured in {$path}.");
+
+        if ($replaceFile) {
+            copy(base_path($stubPath), (base_path($path)));
+            $this->info("Your default file has been placed at {$path}.");
+        } else {
+            $this->info("Don’t forget to manually configure your template paths in {$path}.");
+            $this->comment("Docs: https://tailwindcss.com/docs/guides/laravel");
+        }
     }
 
-    private function addTailwindDirectives(): void
+
+    private function replaceAppCss(): void
     {
+        $originalPath = 'https://raw.githubusercontent.com/laravel/laravel/8.x/resources/css/app.css';
+        $stubPath = 'vendor/jwcobb/laravel-toolkit/stubs/app.css.stub';
         $path = 'resources/css/app.css';
-        if (! Str::contains(
-            $file = file_get_contents(base_path($path)),
-            '@tailwind base'
-        )) {
-            file_put_contents(
-                base_path($path),
-                '@tailwind base;'.PHP_EOL.'@tailwind components;'.PHP_EOL.'@tailwind utilities;'.$file
-            );
-        }
-        $this->info("Tailwind directives have been added to {$path}.");
-    }
 
-    private function extendThemeColors(): void
-    {
-        $colors = <<<END
-        extend: {
-            colors: {
-                'primary': {
-                    // https://www.tailwindshades.com/#color=111.54929577464789%2C91.41630901287556%2C54.313725490196084&step-up=8&step-down=11&hue-shift=0&name=harlequin&overrides=e30%3D
-                    DEFAULT: '#3EF520',
-                    '50': '#D6FDD0',
-                    '100': '#C5FCBC',
-                    '200': '#A3FA95',
-                    '300': '#82F96E',
-                    '400': '#60F747',
-                    '500': '#3EF520',
-                    '600': '#26D309',
-                    '700': '#1C9E07',
-                    '800': '#136805',
-                    '900': '#093202'
-                },
-                'secondary': {
-                    // Rich Black from https://coolors.co/3ef520-141115-4c2b36-8d6346-9d75cb
-                    // https://www.tailwindshades.com/#color=285%2C10.526315789473683%2C7.450980392156863&step-up=8&step-down=11&hue-shift=0&name=baltic-sea&overrides=e30%3D
-                    DEFAULT: '#141115',
-                    '50': '#75637A',
-                    '100': '#6A5A6F',
-                    '200': '#544859',
-                    '300': '#3F3642',
-                    '400': '#29232C',
-                    '500': '#141115',
-                    '600': '#000000',
-                    '700': '#000000',
-                    '800': '#000000',
-                    '900': '#000000'
-                },
-            },
+        if (file_get_contents(base_path($path)) === file_get_contents($originalPath)) {
+            $replaceFile = true;
+        } else {
+            $replaceFile = $this->confirm("{$path} has been altered from the original. Are you sure you want to overwrite it?", false);
         }
-END;
 
-        $path = 'tailwind.config.js';
-        if (Str::contains(
-            $file = file_get_contents(base_path($path)),
-            'extend: {}'
-        )) {
-            file_put_contents(base_path($path), str_replace(
-                'extend: {}',
-                $colors,
-                $file
-            ));
+        if ($replaceFile) {
+            copy(base_path($stubPath), (base_path($path)));
+            $this->info("Your default file has been placed at {$path}.");
+        } else {
+            $this->info("Don’t forget to add the Tailwind directives to your CSS in {$path}.");
+            $this->comment("Docs: https://tailwindcss.com/docs/guides/laravel");
         }
-        $this->info("Tailwind theme colors have been extended in {$path}.");
     }
 }

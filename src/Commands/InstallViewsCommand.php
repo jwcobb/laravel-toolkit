@@ -1,0 +1,36 @@
+<?php
+
+namespace JWCobb\LaravelToolkit\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Str;
+
+class InstallViewsCommand extends Command
+{
+    public $signature = 'laravel-toolkit:install-views';
+
+    public $description = 'Install some default views.';
+
+
+    public function handle(): int
+    {
+        if ($this->confirm('Install some default views?', true)) {
+            $files = [
+                'resources/views/layouts/app.blade.php'                => 'vendor/jwcobb/laravel-toolkit/stubs/views/app.blade.php.stub',
+                'resources/views/partisals/google-analytics.blade.php' => 'vendor/jwcobb/laravel-toolkit/stubs/views/google-analytics.blade.php.stub',
+            ];
+
+            foreach ($files as $destination => $stub) {
+                if (file_exists(base_path($destination))) {
+                    $this->warn("SKIPPED: A file already exists at {$path}.");
+                } else {
+                    copy(base_path($stub), base_path($destination));
+                    $this->info("INSTALLED: {$path}.");
+
+                }
+            }
+        }
+
+        return self::SUCCESS;
+    }
+}

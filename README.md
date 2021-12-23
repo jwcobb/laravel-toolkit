@@ -40,7 +40,7 @@ composer require jwcobb/laravel-toolkit
 You can run some interactive scripts to set some things up and install common packages via Composer
 
 ```bash
-php artisan laravel-toolkit:run-commands
+php artisan laravel-toolkit:install
 ```
 
 You can publish and run the migrations with:

@@ -2,10 +2,12 @@
 
 namespace JWCobb\LaravelToolkit;
 
-use JWCobb\LaravelToolkit\Commands\DisableLazyLoadingCommand;
+use JWCobb\LaravelToolkit\Commands\InstallPackagesCommand;
+use JWCobb\LaravelToolkit\Commands\InstallSEOServiceProviderCommand;
 use JWCobb\LaravelToolkit\Commands\InstallTailwindCommand;
-use JWCobb\LaravelToolkit\Commands\LaravelToolkitCommand;
-use JWCobb\LaravelToolkit\Commands\RequirePackagesCommand;
+use JWCobb\LaravelToolkit\Commands\InstallViewsCommand;
+use JWCobb\LaravelToolkit\Commands\LaravelToolkitInstallerCommand;
+use JWCobb\LaravelToolkit\Commands\PreventLazyLoadingCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -22,13 +24,20 @@ class LaravelToolkitServiceProvider extends PackageServiceProvider
             ->name('laravel-toolkit')
             ->hasConfigFile('site')
 //            ->hasViews()
+            ->hasMigration('create_addresses_table')
             ->hasMigration('create_email_addresses_table')
             ->hasMigration('create_phone_numbers_table')
-            ->hasMigration('create_addresses_table')
-            ->hasCommand(LaravelToolkitCommand::class)
-            ->hasCommand(DisableLazyLoadingCommand::class)
-            ->hasCommand(RequirePackagesCommand::class)
+            ->hasCommand(LaravelToolkitInstallerCommand::class)
+            ->hasCommand(InstallPackagesCommand::class)
+            ->hasCommand(InstallSEOServiceProviderCommand::class)
             ->hasCommand(InstallTailwindCommand::class)
-        ;
+            ->hasCommand(InstallViewsCommand::class)
+            ->hasCommand(PreventLazyLoadingCommand::class);
+    }
+
+
+    public function boot()
+    {
+
     }
 }
