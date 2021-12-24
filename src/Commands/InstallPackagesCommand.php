@@ -35,6 +35,10 @@ class InstallPackagesCommand extends Command
             $this->require[] = 'astrotomic/laravel-cachable-attributes';
         }
 
+        if ($this->confirm('Install archtechx/laravel-seo?', false)) {
+            $this->require[] = 'archtechx/laravel-seo';
+        }
+
         if ($this->confirm('Install blade-ui-kit/blade-icons?', true)) {
             $this->require[] = 'blade-ui-kit/blade-icons';
 
