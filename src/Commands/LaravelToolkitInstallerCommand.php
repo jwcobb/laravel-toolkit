@@ -16,7 +16,7 @@ class LaravelToolkitInstallerCommand extends Command
         $this->call('laravel-toolkit:install-packages');
         $this->call('laravel-toolkit:install-tailwind');
         $this->call('laravel-toolkit:install-seo-service-provider');
-        $this->call('laravel-toolkit:laravel-toolkit:install-views');
+        $this->call('laravel-toolkit:install-views');
 
         return self::SUCCESS;
     }

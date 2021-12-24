@@ -19,6 +19,9 @@ class InstallViewsCommand extends Command
             ];
 
             foreach ($files as $destination => $stub) {
+                if (! file_exists(base_path('resources/views/layouts/'))) {
+                    mkdir(base_path('resources/views/layouts/'));
+                }
                 if (file_exists(base_path($destination))) {
                     $this->warn("SKIPPED: A file already exists at {$destination}.");
                 } else {
