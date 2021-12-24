@@ -15,12 +15,12 @@ class InstallViewsCommand extends Command
         if ($this->confirm('Install some default views?', true)) {
             $files = [
                 'resources/views/layouts/app.blade.php' => 'vendor/jwcobb/laravel-toolkit/stubs/views/app.blade.php.stub',
-                'resources/views/partisals/google-analytics.blade.php' => 'vendor/jwcobb/laravel-toolkit/stubs/views/google-analytics.blade.php.stub',
+                'resources/views/partials/google-analytics.blade.php' => 'vendor/jwcobb/laravel-toolkit/stubs/views/google-analytics.blade.php.stub',
             ];
 
             foreach ($files as $destination => $stub) {
-                if (! file_exists(base_path('resources/views/layouts/'))) {
-                    mkdir(base_path('resources/views/layouts/'));
+                if (! file_exists(dirname(base_path($destination)))) {
+                    mkdir(dirname(base_path($destination)));
                 }
                 if (file_exists(base_path($destination))) {
                     $this->warn("SKIPPED: A file already exists at {$destination}.");
